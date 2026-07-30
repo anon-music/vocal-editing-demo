@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Audio examples for text-guided vocal editing.">
+  <title>Vocal Editing Demo</title>
+  <style>
+    :root {
+      --ink: #18201f;
+      --muted: #687170;
+      --line: #dfe5e2;
+      --paper: #ffffff;
+      --wash: #f4f7f5;
+      --before: #c94f52;
+      --before-bg: #fff0ef;
+      --after: #087f6b;
+      --after-bg: #e8f7f3;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 76px 0 54px; }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--after);
+      font-size: .76rem;
+      font-weight: 750;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(2.45rem, 6vw, 5rem); line-height: .98; letter-spacing: -.055em; }
+    .intro { max-width: 690px; margin: 25px 0 0; color: var(--muted); font-size: 1.05rem; }
+    nav { display: flex; gap: 8px; margin-top: 28px; }
+    nav a { padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: var(--paper); font-size: .9rem; text-decoration: none; }
+    section { padding: 20px 0 58px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.35rem); letter-spacing: -.035em; }
+    .count { color: var(--muted); font-size: .9rem; }
+    .examples { display: grid; gap: 18px; }
+    .example { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: 0 8px 26px rgba(28, 45, 40, .045); }
+    .example-title { display: flex; align-items: center; gap: 10px; padding: 18px 20px 0; }
+    .number { display: grid; width: 28px; height: 28px; place-items: center; border-radius: 50%; background: var(--ink); color: white; font-size: .75rem; font-weight: 700; }
+    h3 { margin: 0; font-size: 1rem; }
+    .text-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 20px 18px; }
+    .transcript { margin: 0; padding: 14px 15px; border-radius: 12px; background: var(--wash); }
+    .label { display: block; margin-bottom: 6px; color: var(--muted); font-size: .68rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+    mark { padding: 1px 4px 2px; border-radius: 4px; font-weight: 700; }
+    .before mark { color: var(--before); background: var(--before-bg); }
+    .after mark { color: var(--after); background: var(--after-bg); }
+    .media-pair { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+    .media { min-width: 0; padding: 18px 20px 20px; }
+    .media + .media { border-left: 1px solid var(--line); }
+    .media img { display: block; width: 100%; height: 190px; margin: 0 0 14px; border-radius: 9px; background: #101615; object-fit: cover; }
+    audio { display: block; width: 100%; height: 40px; }
+    footer { padding: 4px 0 45px; color: var(--muted); font-size: .82rem; text-align: center; }
+    @media (max-width: 700px) {
+      header { padding-top: 54px; }
+      .text-pair, .media-pair { grid-template-columns: 1fr; }
+      .media + .media { border-left: 0; border-top: 1px solid var(--line); }
+      .media img { height: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <p class="eyebrow">Audio Demo</p>
+    <h1>Vocal Editing Demo</h1>
+    <p class="intro">Vocal editing in complex acoustic environments, including background music, transient interference, and continuous noise. Each example presents the original recording alongside the output produced by our model.</p>
+    <nav aria-label="Demo sections"><a href="#singing">Singing</a><a href="#speech">Speech</a></nav>
+  </header>
+
+  <main class="shell">
+    <section id="singing">
+      <div class="section-head"><h2>Singing</h2><span class="count">5 examples</span></div>
+      <div class="examples">
+        <article class="example">
+          <div class="example-title"><span class="number">01</span><h3>Singing 01</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>原来多年前在那个书店，借我<mark>课本</mark>的是你</p><p class="transcript after"><span class="label">Edited text</span>原来多年前在那个书店，借我<mark>雨伞</mark>的是你</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="singing/singing_15.png" alt="Original spectrogram for singing example 15"><audio controls preload="none" src="singing/singing_15_snr020_rt60none.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="singing/singing_15_generated.png" alt="Edited spectrogram for singing example 15"><audio controls preload="none" src="singing/singing_15_snr020_rt60none_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">02</span><h3>Singing 02</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>全世界都<mark>不说</mark></p><p class="transcript after"><span class="label">Edited text</span>全世界都<mark>沉默</mark></p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="singing/singing_16.png" alt="Original spectrogram for singing example 16"><audio controls preload="none" src="singing/singing_16_snr010_rt60none.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="singing/singing_16_generated.png" alt="Edited spectrogram for singing example 16"><audio controls preload="none" src="singing/singing_16_snr010_rt60none_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">03</span><h3>Singing 03</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>Those were such <mark>happy</mark> times and not so long ago</p><p class="transcript after"><span class="label">Edited text</span>Those were such <mark>sweet</mark> times and not so long ago</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="singing/singing_19.png" alt="Original spectrogram for singing example 19"><audio controls preload="none" src="singing/singing_19_snr010_rt600.5.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="singing/singing_19_generated.png" alt="Edited spectrogram for singing example 19"><audio controls preload="none" src="singing/singing_19_snr010_rt600.5_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">04</span><h3>Singing 04</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>曾经那样被看好的<mark>我们</mark></p><p class="transcript after"><span class="label">Edited text</span>曾经那样被看好的<mark>彼此</mark></p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="singing/singing_20.png" alt="Original spectrogram for singing example 20"><audio controls preload="none" src="singing/singing_20_snrnone_rt600.5.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="singing/singing_20_generated.png" alt="Edited spectrogram for singing example 20"><audio controls preload="none" src="singing/singing_20_snrnone_rt600.5_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">05</span><h3>Singing 05</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>你的酒馆对我<mark>打了烊</mark>，子弹在我心头上了膛</p><p class="transcript after"><span class="label">Edited text</span>你的酒馆对我<mark>关了门</mark>，子弹在我心头上了膛</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="singing/singing_30.png" alt="Original spectrogram for singing example 30"><audio controls preload="none" src="singing/singing_30_snr000_rt600.5.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="singing/singing_30_generated.png" alt="Edited spectrogram for singing example 30"><audio controls preload="none" src="singing/singing_30_snr000_rt600.5_generated.wav"></audio></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="speech">
+      <div class="section-head"><h2>Speech</h2><span class="count">4 examples</span></div>
+      <div class="examples">
+        <article class="example">
+          <div class="example-title"><span class="number">01</span><h3>Speech 01</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>We might get some <mark>puppies</mark>, or owl eggs, or snake skins.</p><p class="transcript after"><span class="label">Edited text</span>We might get some <mark>kittens</mark>, or owl eggs, or snake skins.</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="speech/speech_01.png" alt="Original spectrogram for speech example 01"><audio controls preload="none" src="speech/speech_01_snrnone_rt600.5.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="speech/speech_01_generated.png" alt="Edited spectrogram for speech example 01"><audio controls preload="none" src="speech/speech_01_snrnone_rt600.5_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">02</span><h3>Speech 02</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>He was now the <mark>object</mark> of their anxiety, and whose absence was a black shadow between them and their happiness.</p><p class="transcript after"><span class="label">Edited text</span>He was now the <mark>focus</mark> of their anxiety, and whose absence was a black shadow between them and their happiness.</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="speech/speech_16.png" alt="Original spectrogram for speech example 16"><audio controls preload="none" src="speech/speech_16_snr010_rt60none.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="speech/speech_16_generated.png" alt="Edited spectrogram for speech example 16"><audio controls preload="none" src="speech/speech_16_snr010_rt60none_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">03</span><h3>Speech 03</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>通过<mark>组织</mark>动员和政策引导等多种途径</p><p class="transcript after"><span class="label">Edited text</span><mark>准备</mark>通过动员和政策引导等多种途径</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="speech/speech_18.png" alt="Original spectrogram for speech example 18"><audio controls preload="none" src="speech/speech_18_snr010_rt600.5.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="speech/speech_18_generated.png" alt="Edited spectrogram for speech example 18"><audio controls preload="none" src="speech/speech_18_snr010_rt600.5_generated.wav"></audio></div></div>
+        </article>
+        <article class="example">
+          <div class="example-title"><span class="number">04</span><h3>Speech 04</h3></div>
+          <div class="text-pair"><p class="transcript before"><span class="label">Original text</span>就这个，<mark>指标的话</mark>就是，他是一个综合性的去考虑了很多评估指标之后加权平均的一个结果</p><p class="transcript after"><span class="label">Edited text</span>就这个，<mark>最终得分</mark>就是，他是一个综合性的去考虑了很多评估指标之后加权平均的一个结果</p></div>
+          <div class="media-pair"><div class="media"><span class="label">Original</span><img src="speech/speech_21.png" alt="Original spectrogram for speech example 21"><audio controls preload="none" src="speech/speech_21_snr010_rt600.5.wav"></audio></div><div class="media"><span class="label">Model output</span><img src="speech/speech_21_generated.png" alt="Edited spectrogram for speech example 21"><audio controls preload="none" src="speech/speech_21_snr010_rt600.5_generated.wav"></audio></div></div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="shell">Vocal Editing Demo · Original and model-edited audio comparisons</footer>
+</body>
+</html>
